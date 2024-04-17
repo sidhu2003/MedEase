@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+{% load static %}
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,8 +9,8 @@
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <link rel="website icon" type="png"  href="img/medlogo.png"> 
-    <link rel="stylesheet" href="dashboard.css">
+    <link rel="website icon" type="png"  href="{% static 'images/medlogo.png' %}"> 
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 </head>
 
 <body>
@@ -50,18 +50,17 @@
     <div class="container-fluid dashboard ">
         <div class="nav">
 
-        <a class="nav-a" href="./index.html"><img src="img/home-icon-silhouette-svgrepo-com 1.png" width="58px"></a>
-        <a class="nav-a" href="./aboutus.html"><img src="img/Vector.png" width ="50px"></a>
-        <a class="nav-a" href="./map.html"><img src="img/find-on-map-svgrepo-com 1.png" width="55px"></a>
-        <a class="nav-a" href="./diet.html"><img src="img/diet-svgrepo-com 1.png" width="56px"></a>
-        <a class="nav-a" href="./index.html"><img src="img/logout-svgrepo-com 1.png" width="48px"></a>
+        <a class="nav-a" href="{% url 'home' %}"><img src="{% static 'images/home-icon-silhouette-svgrepo-com 1.png' %}" width="58px"></a>
+        <a class="nav-a" href="{% url 'about' %}"><img src="{% static 'images/Vector.png' %}" width ="50px"></a>
+        <a class="nav-a" href="{% url 'diet' %}"><img src="{% static 'images/diet-svgrepo-com 1.png' %}" width="56px"></a>
+        <a class="nav-a" href="{% url 'home' %}"><img src="{% static 'images/logout-svgrepo-com 1.png' %}" width="48px"></a>
 
     </div>
     <!-- navbar-2 -->
    <nav class="navbar navbar-expand-lg sticky-top  container-fluid" style="background-color: #f0fbfc;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="./index.html" style="padding-left: 2%;">
-                <img src="img/medlogo.png" alt="Logo" width="100" height="100">
+            <a class="navbar-brand" href="{% url 'home' %}" style="padding-left: 2%;">
+                <img src="{% static 'images/medlogo.png' %}" alt="Logo" width="100" height="100">
               </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -71,19 +70,19 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navLinks">
                     <li class="nav-item mx-3">
-                        <a class="nav-link fs-4" aria-current="page" href="./index.html">Home</a>
+                        <a class="nav-link fs-4" aria-current="page" href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link fs-4" href="./diet.html">Diet</a>
+                        <a class="nav-link fs-4" href="{% url 'diet' %}">Diet</a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link fs-4" href="./aboutus.html">Aboutus</a>
+                        <a class="nav-link fs-4" href="{% url 'about' %}">Aboutus</a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link fs-4" href="./signup.html">Signin/Signup</a>
+                        <a class="nav-link fs-4" href="{% url 'register' %}">Signin/Signup</a>
                     </li>
                 </ul>
-                <form class="d-flex" role="search" action="./dashboard.html">
+                <form class="d-flex" role="search" action="{% url 'dashboard' %}">
                     <button class="btn btn-outline-success btn-lg" type="submit">Book now</button>
                 </form>
             </div>
@@ -93,7 +92,7 @@
     <!-- dashboard -->
 
     <div class="d-flex justify-content-end mt-3">
-        <a class="btn btn-primary me-4 fs-5 btn-lg" href="./appointment.html">Appointment</a>
+        <a class="btn btn-primary me-4 fs-5 btn-lg" href="{% url 'appointment' %}">Appointment</a>
         <button class="btn btn-primary fs-5 side-cont " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
             aria-controls="offcanvasRigh">&#8592;</button>
         
@@ -145,7 +144,7 @@
                     <div class="container quote">
                         <h2>Daily Read</h2>
                         <p>New rules in the dose of medicines to be consumed.</p>
-                        <img class="img-3" src="img/christina-victoria-craft-WHSnkIwWpec-unsplash.jpg" alt="">
+                        <img class="img-3" src="{% static 'images/christina-victoria-craft-WHSnkIwWpec-unsplash.jpg' %}" alt="">
                     </div>
                 </div>
             </div>
@@ -182,7 +181,7 @@
             <p class="text-center text-light txt-1"> Accessible from everywhere</p>
             <p class="text-center text-light txt-2">
                 Your desktop, tablet & smartphone</p>
-            <img src="img/accessiblefromanywhere.png" class="img" alt="">
+            <img src="{% static 'images/accessiblefromanywhere.png'  %}" class="img" alt="">
         </div>
     </div>
     <!-- chatbot -->
@@ -219,11 +218,9 @@
                 </div>
                 <div class="middle box-f">
                     <div class="topic">Our Services</div>
-                <div><a href="./diet.html">DIET</a></div>
-                <div><a href="./aboutus.html">About Us</a></div>
-                <div><a href="#">Nearby Pharmas</a></div>
-                <div><a href="./map.html"> Nearby Hospitals</a></div>
-                <div><a href="./index.html#faq">FAQ's</a></div>
+                <div><a href="{% url 'diet' %}">DIET</a></div>
+                <div><a href="{% url 'about' %}">About Us</a></div>
+                <div><a href="{% url 'home' %}#faq">FAQ's</a></div>
             </div>
             <div class="right box-f">
                 <div class="topic">Subscribe us</div>
@@ -231,24 +228,24 @@
                     <input type="text" placeholder="Enter email address">
                     <input type="submit" name="" value="Send">
                     <div class="media-icons">
-                        <a href="#" class="me-3"><img src="img/icons8-facebook.svg"></a>
-                        <a href="#" class="me-3"><img src="img/icons8-twitter.svg"></a>
-                        <a href="#" class="me-4"><img src="img/icons8-instagram.svg"></a>
-                        <a href="#" class="me-4"><img src="img/icons8-github.svg"></a>
-                        <a href="#" class="me-3"><img src="img/icons8-linkedin-circled.svg"></a>
+                        <a href="#" class="me-3"><img src="{% static 'images/icons8-facebook.svg' %}"></a>
+                        <a href="#" class="me-3"><img src="{% static 'images/icons8-twitter.svg' %}"></a>
+                        <a href="#" class="me-4"><img src="{% static 'images/icons8-instagram.svg' %}"></a>
+                        <a href="#" class="me-4"><img src="{% static 'images/icons8-github.svg' %}"></a>
+                        <a href="#" class="me-3"><img src="{% static 'images/icons8-linkedin-circled.svg' %}"></a>
                     </div>
                 </form>
             </div>
         </div>
         <div class="bottom-f mt-4">
-            <p>Copyright © 2023 <a href="./index.html">MedEase</a> All rights reserved</p>
+            <p>Copyright © 2023 <a href="{% url 'home' %}">MedEase</a> All rights reserved</p>
         </div>
     </footer>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
 integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
-        <script src="dashboard.js"></script>
+        <script src="{% static 'js/dashboard.js' %}"></script>
 </body>
 
 </html>

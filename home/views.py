@@ -1,8 +1,10 @@
 from django.shortcuts import render
-
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 # Create your views here.
 def home(request):
-    return render(request,'home/index.html')
+    user = User.objects.all()
+    return render(request,'home/index.html',{'user':user})
 
 def aboutus(request):
     return render(request,'home/aboutus.html')

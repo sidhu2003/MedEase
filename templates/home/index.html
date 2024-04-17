@@ -45,21 +45,23 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navLinks">
             <li class="nav-item mx-3">
-              <a class="nav-link fs-4" aria-current="page" href="./index.html"
+              <a class="nav-link fs-4" aria-current="page" href="{% url 'home' %}"
                 >Home</a
               >
             </li>
             <li class="nav-item mx-3">
-              <a class="nav-link fs-4" href="./diet.html">Diet</a>
+              <a class="nav-link fs-4" href="{% url 'diet' %}">Diet</a>
             </li>
             <li class="nav-item mx-3">
-              <a class="nav-link fs-4" href="./aboutus.html">Aboutus</a>
+              <a class="nav-link fs-4" href="{% url 'about' %}">Aboutus</a>
             </li>
+            {% if user.is_authenticated %}
             <li class="nav-item mx-3">
-              <a class="nav-link fs-4" href="./signup.html">Signin/Signup</a>
+              <a class="nav-link fs-4" href="{% url 'register' %}">Signin/Signup</a>
             </li>
+            {% endif %}
           </ul>
-          <form class="d-flex" role="search" action="./signup.html">
+          <form class="d-flex" role="search" action="{% url 'dashboard' %}">
             <button class="btn btn-outline-success btn-lg" type="submit">
               Book now
             </button>
@@ -313,11 +315,10 @@
         </div>
         <div class="middle box-f">
           <div class="topic">Our Services</div>
-          <div><a href="./diet.html">DIET</a></div>
-          <div><a href="./aboutus.html">About Us</a></div>
+          <div><a href="{% url 'diet' %}">DIET</a></div>
+          <div><a href="{% url 'about' %}">About Us</a></div>
           <div><a href="#">Nearby Pharmas</a></div>
-          <div><a href="./map.html"> Nearby Hospitals</a></div>
-          <div><a href="./index.html#faq">FAQ's</a></div>
+          <div><a href="{% url 'home' %}#faq">FAQ's</a></div>
         </div>
         <div class="right box-f">
           <div class="topic">Subscribe us</div>
@@ -340,7 +341,7 @@
       </div>
       <div class="bottom-f mt-4">
         <p>
-          Copyright © 2023 <a href="./index.html">MedEase</a> All rights
+          Copyright © 2023 <a href="{% url 'home' %}">MedEase</a> All rights
           reserved
         </p>
       </div>
