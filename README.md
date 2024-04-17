@@ -11,14 +11,14 @@
    cd medease-devops
    ```
 
-2. **Build the Docker image:**
+2. **Bring up the Docker container:**
    ```bash
-   docker build -t medease .
+   docker-compose up -d
    ```
 
-3. **Run the Docker container:**
+3. **Bring down the Docker container:**
    ```bash
-   docker run -d -p 8000:8000 medease
+   docker-compose down
    ```
 
    Replace `8000:8000` with the desired port mapping if you want to run the Django server on a different port.
