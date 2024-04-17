@@ -25,3 +25,31 @@
 
 4. **Access the medease application:**
    Once the Docker container is running, you can access the Django application by navigating to `http://localhost:8000` in your web browser.
+
+## Running Legacy Version
+
+1. **Navigate to the Directory**: Open your terminal or command prompt and navigate to the directory where your Terraform configuration files are located.
+
+2. **Initialize Terraform**: Run the following command to initialize Terraform in the directory containing your configuration files:
+
+```bash
+terraform init
+```
+
+This command initializes the current directory as a Terraform working directory and downloads any necessary plugins.
+
+3. **Review Terraform Plan (Optional)**: You can review the execution plan to ensure that Terraform will create the resources as expected. Run:
+
+```bash
+terraform plan
+```
+
+This command shows you a summary of what Terraform will do when you apply your configuration.
+
+4. **Apply Terraform Configuration**: If the plan looks good, apply the Terraform configuration to create the infrastructure:
+
+```bash
+terraform apply
+```
+
+Terraform will ask for confirmation before proceeding. Type `yes` and press Enter to apply the configuration.
