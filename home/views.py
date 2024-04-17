@@ -12,14 +12,18 @@ def aboutus(request):
 def diet(request):
     return render(request,'home/diet.html')
 
+@login_required(login_url='login')
 def prescription(request):
     return render(request,'home/prescription.html')
 
 def video(request):
     return render(request,'home/video.html')
 
+@login_required(login_url='login')
 def dashboard(request):
+    user = User.objects.all()
     return render(request,'home/dashboard.html')
 
+@login_required(login_url='login')
 def appointment(request):
     return render(request,'home/appointment.html')

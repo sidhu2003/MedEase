@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-ud4_n1#3l!853+%gntk8uq$4sh_r*9zix@cok3=4ucn_ee^y#c
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -76,10 +76,15 @@ WSGI_APPLICATION = 'MedEase.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'pgdb',
+        'USER': 'admin',
+        'PASSWORD': 'admin',
+        'HOST': 'pgdb',
+        'PORT': '5432',
     }
 }
 

@@ -55,9 +55,13 @@
             <li class="nav-item mx-3">
               <a class="nav-link fs-4" href="{% url 'about' %}">Aboutus</a>
             </li>
-            {% if user.is_authenticated %}
+            {% if not request.user.is_authenticated %}
             <li class="nav-item mx-3">
               <a class="nav-link fs-4" href="{% url 'register' %}">Signin/Signup</a>
+            </li>
+            {% else %}
+            <li class="nav-item mx-3">
+              <a class="nav-link fs-4" href="{% url 'logout' %}">logout</a>
             </li>
             {% endif %}
           </ul>

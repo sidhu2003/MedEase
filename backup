@@ -1,6 +1,16 @@
-version: '3'
-
 services:
+  pgdb:
+    image: postgres:16
+    container_name: pgdb
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: pgdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
   django-app:
     image: django-app
     container_name: django-app
@@ -14,18 +24,6 @@ services:
     depends_on:
       - pgdb
 
-  pgdb:
-    image: postgres:16
-    container_name: pgdb
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
-      POSTGRES_DB: pgdb
-    ports:
-      - "5432:5432"
-    volumes:
-      - db_data:/var/lib/postgresql/data
-      
 volumes:
   web_data:
   db_data:
