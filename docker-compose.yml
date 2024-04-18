@@ -6,7 +6,7 @@ services:
     container_name: django-app
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-prod
     ports:
       - "8000:8000"
     volumes:
@@ -32,6 +32,16 @@ services:
       - "6379:6379"
     depends_on:
       - pgdb
+
+  nginx:
+    container_name: nginx
+    build: ./nginx/Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - django-app
 
 volumes:
   web_data:
