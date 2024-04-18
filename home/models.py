@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django_redis import get_redis_connection
+from django.core.cache import cache
 # Create your models here.
 class Reports(models.Model):
     s_no = models.AutoField(primary_key=True)

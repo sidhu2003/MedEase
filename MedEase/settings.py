@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'user',
+    'django_redis',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +73,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'MedEase.wsgi.application'
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://cache:6379/1',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSION_CACHE_ALIAS = 'default'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -84,7 +96,7 @@ DATABASES = {
         'USER': 'admin',
         'PASSWORD': 'admin',
         'HOST': 'pgdb',
-        'PORT': '5432',
+        'PORT': 5432,
     }
 }
 
