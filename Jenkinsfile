@@ -4,7 +4,7 @@ pipeline{
         stage('Build'){
             steps{
                 echo 'Building the medease application on Docker'
-                sh 'docker-compose -f docker-compose-production.yml up --build -d'
+                sh 'docker-compose -f docker-compose-production.yml build -d'
             } 
         }
         stage('Deploy'){
