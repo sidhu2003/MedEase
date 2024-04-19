@@ -1,0 +1,21 @@
+name: medease CI-CD
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build and deploy the website
+      run: |
+             docker-compose -f docker-compose-production.yml build -d
+             docker-compose -f docker-compose-production.yml up -d
+             
+      
