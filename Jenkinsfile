@@ -7,10 +7,6 @@ pipeline {
         dockerImage = ''
     }
 
-    tools {
-        terraform 'terraform'
-    }
-
     stages {
         stage ('Build Docker Image') {
             steps {
@@ -30,14 +26,5 @@ pipeline {
                 }
             }
         }
-        stage('Deploy with Terraform') {
-            environment {
-                AWS_ACCESS_KEY_ID = credentials('jenkins-aws').AWS_ACCESS_KEY_ID
-                AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws').AWS_SECRET_ACCESS_KEY
-            }
-            steps {
-                sh 'cd terraform && terraform init && terraform apply -auto-approve'
-            }
-        }
     }
-    }
+}
