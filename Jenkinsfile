@@ -5,7 +5,7 @@ pipeline {
         registryUrl = 'programmer175/django-app'
         registryCredential = 'programmer175'
         dockerImage = ''
-        AWS_API_KEY = credentials('aws-jenkins')
+        AWS_API_KEY = credentials('jenkins-aws')
     }
 
     tools {
@@ -33,7 +33,7 @@ pipeline {
         }
         stage ('Deploy with Terraform') {
             steps {
-                withCredentials([string(credentialsId: 'aws-jenkins', variable: 'AWS_API_KEY')]){
+                withCredentials([string(credentialsId: 'jenkins-aws', variable: 'AWS_API_KEY')]){
                     sh 'cd terraform && terraform init && terraform apply -auto-approve'
                 }       
             }
