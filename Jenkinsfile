@@ -10,7 +10,7 @@ pipeline {
         stage ('Build Docker Image') {
             steps {
                 script {
-                   dockerImage = docker.build registryUrl + ":$BUILD_NUMBER", tag="latest", file="Dockerfile-prod"
+                   dockerImage = docker.build registryUrl + ":$BUILD_NUMBER"
                 }
             }
             
