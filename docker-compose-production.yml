@@ -2,11 +2,8 @@ version: '3'
 
 services:
   django-app:
-    image: django-app
+    image: programmer175/django-app:latest
     container_name: django-app
-    build:
-      context: .
-      dockerfile: Dockerfile-prod
     ports:
       - "8000:8000"
     volumes:

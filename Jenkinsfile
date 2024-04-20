@@ -1,28 +1,30 @@
 pipeline {
     agent any
-    tools {
-        terraform 'terraform'
+
+    environment {
+        AWS_ACCESS_KEY_ID = credentials('aws-jenkins')['AWS_ACCESS_KEY_ID']
+        AWS_SECRET_ACCESS_KEY = credentials('aws-jenkins')['AWS_SECRET_ACCESS_KEY']
+        AWS_DEFAULT_REGION = 'us-east-1'
+        registryUrl = 'programmer175/django-app'
+        registryCredential = 'programmer175'
     }
+
     stages {
-        stage ('Terraform Init') {
+        stage ('Build Docker Image') {
             steps {
-                    withAWS(credentials: 'aws-jenkins', region: 'us-east-1') {
-                        sh "terraform init"
-                    }
+                script {
+                   dockerImage = docker.build registryUrl + ":$BUILD_NUMBER"
+                }
             }
+            
         }
-        stage ('Terraform Plan') {
+        stage ('Push Docker Image') {
             steps {
-                    withAWS(credentials: 'aws-jenkins', region: 'us-east-1') {
-                        sh "terraform plan"
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push()
                     }
-            }
-        }
-        stage ('Terraform Apply & Deploy Docker Image on Webserver') {
-            steps {
-                    withAWS(credentials: 'aws-jenkins', region: 'us-east-1') {
-                        sh "terraform apply -auto-approve"
-                    }
+                }
             }
         }
     }
