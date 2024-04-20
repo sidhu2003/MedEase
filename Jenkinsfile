@@ -7,6 +7,10 @@ pipeline {
         dockerImage = ''
     }
 
+    tools {
+        terraform 'terraform'
+    }
+
     stages {
         stage ('Build Docker Image') {
             steps {
@@ -24,6 +28,13 @@ pipeline {
                         dockerImage.push('latest')
                     }
                 }
+            }
+        }
+        stage ('Deploy with Terraform') {
+            steps {
+                sh 'cd terraform'
+                sh 'terraform init'
+                sh 'terraform apply -auto-approve'
             }
         }
     }
