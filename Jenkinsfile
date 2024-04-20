@@ -33,10 +33,8 @@ pipeline {
         }
         stage ('Deploy with Terraform') {
             steps {
-            script {
                      sh 'cd terraform && terraform init'
                      sh 'cd terraform && terraform apply -auto-approve'
-                }
             }
         }
     }
