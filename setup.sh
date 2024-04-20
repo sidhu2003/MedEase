@@ -25,3 +25,6 @@ sudo docker-compose -f docker-compose-production.yml build -d
 
 # Docker Compose Up
 sudo docker-compose -f docker-compose-production.yml up -d
+
+# Migrate the Database
+sudo docker exec -it django-app python3 manage.py migrate
