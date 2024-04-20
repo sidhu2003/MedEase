@@ -31,12 +31,15 @@ pipeline {
                 }
             }
         }
-        stage ('Deploy with Terraform') {
+        stage('Deploy with Terraform') {
+            environment {
+                AWS_ACCESS_KEY_ID = credentials('jenkins-aws').AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws').AWS_SECRET_ACCESS_KEY
+            }
             steps {
-                withCredentials([(credentialsId: 'jenkins-aws', variable: 'AWS_API_KEY')]){
-                    sh 'cd terraform && terraform init && terraform apply -auto-approve'
-                }       
+                sh 'cd terraform && terraform init && terraform apply -auto-approve'
             }
         }
+    }
     }
 }
