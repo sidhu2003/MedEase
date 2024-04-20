@@ -5,7 +5,6 @@ pipeline {
         registryUrl = 'programmer175/django-app'
         registryCredential = 'programmer175'
         dockerImage = ''
-        AWS_API_KEY = credentials('jenkins-aws')
     }
 
     tools {
