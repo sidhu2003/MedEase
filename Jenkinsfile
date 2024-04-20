@@ -32,8 +32,10 @@ pipeline {
         }
         stage ('Deploy with Terraform') {
             steps {
-                sh 'cd terraform && terraform init'
-                sh 'cd terraform && terraform apply -auto-approve'
+                withAWS(region:'us-east-1',credentials:'aws-jenkins') {
+                     sh 'cd terraform && terraform init'
+                     sh 'cd terraform && terraform apply -auto-approve'
+                }
             }
         }
     }
