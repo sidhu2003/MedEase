@@ -33,7 +33,7 @@ pipeline {
         }
         stage ('Deploy with Terraform') {
             steps {
-                withCredentials([string(credentialsId: 'jenkins-aws', variable: 'AWS_API_KEY')]){
+                withCredentials([(credentialsId: 'jenkins-aws', variable: 'AWS_API_KEY')]){
                     sh 'cd terraform && terraform init && terraform apply -auto-approve'
                 }       
             }
