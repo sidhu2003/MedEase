@@ -4,6 +4,7 @@ pipeline {
     environment {
         registryUrl = 'programmer175/django-app'
         registryCredential = 'programmer175'
+
     }
 
     stages {
@@ -18,7 +19,7 @@ pipeline {
         stage ('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry( '', registryCredential ) {
+                    docker.withRegistry(registryCredential ) {
                         dockerImage.push()
                     }
                 }
