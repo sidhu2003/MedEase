@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-service
+spec:
+  selector:
+    name: postgres-app
+    app: med-ease
+  ports:
+  - port: 5432
+    targetPort: 5432

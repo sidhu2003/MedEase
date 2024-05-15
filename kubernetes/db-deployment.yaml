@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: postgres-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       name: postgres-app
@@ -29,7 +29,7 @@ spec:
             - name: POSTGRES_DATABASE
               value: "postgres"
             - name: POSTGRES_HOST_AUTH_METHOD
-              value: trust
+              value: "trust"
             - name: POSTGRES_DB
               valueFrom:
                 secretKeyRef:
@@ -37,12 +37,11 @@ spec:
                   key: POSTGRES_DB
       nodeSelector:
         zone: us-east-2a
-      voulmes: 
+      volumes: 
         - name: db-data
           awsElasticBlockStore:
             volumeID: vol-042a643f1c963f43b
             fsType: ext4
-            
       initContainers:
         - name: busybox
           image: busybox:latest  
@@ -50,4 +49,3 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: db-data
-
