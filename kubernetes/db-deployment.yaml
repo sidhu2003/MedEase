@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: postgres-app
+      app: med-ease
+  template:
+    metadata:
+      name: postgres-pod
+      labels:
+        name: postgres-app
+        app: med-ease
+    spec:
+      containers:
+        - name: pgdb
+          image: postgres
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: db-data
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: "admin"
+            - name: POSTGRES_DATABASE
+              value: "postgres"
+            - name: POSTGRES_HOST_AUTH_METHOD
+              value: trust
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: POSTGRES_DB
+      nodeSelector:
+        zone: us-east-2a
+      voulmes: 
+        - name: db-data
+          awsElasticBlockStore:
+            volumeID: vol-042a643f1c963f43b
+            fsType: ext4
+            
+      initContainers:
+        - name: busybox
+          image: busybox:latest  
+          args: ["rm","-rf","/var/lib/postgresql/data/lost+found"]
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: db-data
+
