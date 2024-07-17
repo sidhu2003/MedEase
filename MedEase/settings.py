@@ -27,6 +27,7 @@ SECRET_KEY = 'django-insecure-ud4_n1#3l!853+%gntk8uq$4sh_r*9zix@cok3=4ucn_ee^y#c
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+CSRF_ALLOW_ORIGIN = ['http://localhost']
 
 
 # Application definition
@@ -92,9 +93,9 @@ SESSION_CACHE_ALIAS = 'default'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRES_DATABASE'),
-        'USER': os.getenv('POSTGRES_USER'),
-        'PASSWORD': os.getenv('POSTGRES_DB'),
+        'NAME': os.getenv('DB'),
+        'USER': os.getenv('USER'),
+        'PASSWORD': os.getenv('PASSWORD'),
         'HOST': 'pgdb',
         'PORT': 5432,
     }

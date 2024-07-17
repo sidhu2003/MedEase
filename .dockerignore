@@ -1,3 +1,5 @@
 legacy_version\ \(static\)
 terraform
 ansible
+kubernetes
+nginx
